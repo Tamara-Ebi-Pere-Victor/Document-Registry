@@ -1,0 +1,45 @@
+[
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "hash",
+				"type": "string"
+			}
+		],
+		"name": "add",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "dateAdded",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "hash",
+				"type": "string"
+			}
+		],
+		"name": "verify",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "dateAdded",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
