@@ -8,26 +8,59 @@
 		"inputs": [
 			{
 				"internalType": "string",
-				"name": "hash",
+				"name": "_firstHash",
 				"type": "string"
 			}
 		],
 		"name": "add",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getNoOfDocs",
 		"outputs": [
 			{
 				"internalType": "uint256",
-				"name": "dateAdded",
+				"name": "",
 				"type": "uint256"
 			}
 		],
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "gethashes",
+		"outputs": [
+			{
+				"internalType": "bytes32[]",
+				"name": "",
+				"type": "bytes32[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "isAdmin",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
 		"inputs": [
 			{
 				"internalType": "string",
-				"name": "hash",
+				"name": "_clientSideHash",
 				"type": "string"
 			}
 		],
@@ -35,7 +68,7 @@
 		"outputs": [
 			{
 				"internalType": "uint256",
-				"name": "dateAdded",
+				"name": "",
 				"type": "uint256"
 			}
 		],
