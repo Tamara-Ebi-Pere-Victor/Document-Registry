@@ -20,6 +20,7 @@ Use Cases
 1. This Dapp can be used by document issuing organizations, like schools, business, e.t.c.
 2. It can be used to ensure validity of a perticular document, and help reduce the effect of forgery in the professional world.
 
+[DappLink](https://tamara-ebi-pere-victor.github.io/Document-Registry/)
 
 # For Developers
 ## Install
