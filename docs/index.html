@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Document Registry DApp</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
+
+        body {
+            font-family: Lato;
+            font-weight: 300;
+        }
+
+        #menu {
+            font-weight: 400;
+            background: #DDD;
+            text-align: center;
+            padding: 5px;
+            line-height: 1.5;
+            border-radius: 3px;
+            overflow: auto;
+        }
+
+        #menu a {
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        #menu a:hover {
+            background: #BBB;
+        }
+
+        main > section {
+            display: none;
+            padding: 20px 5px;
+        }
+
+        section#viewHome {
+            display: block;
+        }
+
+        section h1 {
+            margin: 10px 0px;
+            font-size: 1.2em;
+        }
+
+        #infoBox, #errorBox, #loadingBox {
+            width: 80%;
+            margin: 10px auto;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+        #infoBox>header, #errorBox>header, #loadingBox>header {
+            float: right;
+            margin-right: 5px;
+        }
+
+        #infoBox>header:hover, #errorBox>header:hover, #loadingBox>header:hover {
+            transition: all 0.2s;
+            font-weight: bold;
+            cursor: pointer;    
+        }
+
+        #loadingBox {
+            background: #e5a93b;
+        }
+        #infoBox {
+            background: #393;
+        }
+        #errorBox {
+            background: #F50;
+        }
+
+        footer {
+            background: #DDD;
+            padding: 5px 10px;
+            font-size: 0.8em;
+            text-align: center;
+            border-radius: 3px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header id="menu">
+        <a href="#" id="linkHome">Home</a>
+        <a href="#" id="linkSubmitDocument">Submit Document</a>
+        <a href="#" id="linkVerifyDocument">Verify Document</a>
+    </header>
+
+    <main>
+        <section id="loadingBox"><header>x</header><p>Loading ...</p></section>
+
+        <section id="infoBox"><header>x</header><p>Info</p></section>
+
+        <section id="errorBox"><header>x</header><p>Error</p></section>
+
+        <section id="viewHome">
+            <h1>Document Registry</h1>
+            Welcome to the "Document Registry" DApp. This decentralized app runs on the Celo blockchain network and holds a registry of documents in a Solidity smart contract.
+            <ul>
+                <li>The registry keeps the hashes of the documents along with their publish date.</li>
+                <li><b>Contract owner</b> can submit new documents to be stored on the blockchain.</li>
+                <li><b>Users</b> can verify the existence of certain document in the registry.</li>
+				<li>Contract <b>address</b> (at Alfajores testnet): <a href="#" id="contractLink" target="_blank"></a></li>
+            </ul>
+        </section>
+
+        <section id="viewSubmitDocument">
+            <h1>Submit a Document</h1>
+            <p>Contract owners can register (upload) new documents to the "Document Registry" smart contract on the Celo blockchain decentralized network.</p>
+            <input type="file" id="documentForUpload" /><br/>
+            <input type="button" id="documentUploadButton" value="Submit" />
+        </section>
+
+        <section id="viewVerifyDocument">
+            <h1>Verify a Document</h1>
+            <p>Blockchain users can verify documents by checking whether they exist in the "Document Registry" smart contract on the Celo blockchain decentralized network.</p>
+            <input type="file" id="documentToVerify" /><br/>
+            <input type="button" id="documentVerifyButton" value="Submit" />
+        </section>
+    </main>
+    
+    
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="main.js"></script></body>
+</html>
