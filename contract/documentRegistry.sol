@@ -7,12 +7,22 @@ contract DocumentRegistry {
 
     mapping (bytes32 => uint256) documents;
 
+    mapping (address => bool) admin;
+
     bytes32[] hashes;
 
     uint noOfDocuments;
 
     modifier onlyOwner() {
         require (msg.sender == contractOwner, "Only Organization Account is Allowed to add the Blockchain");
+     
+        _;
+    }
+
+    // check if user is an admin
+
+    modifier onlyAdmin() { 
+        isAdmin();
         _;
     }
 
@@ -50,12 +60,23 @@ contract DocumentRegistry {
         return hashes;
     }
 
+    function getDocument(bytes32 _documentHash) public view returns (bytes32){
+        uint _doc =  documents[_documentHash];
+
+        return hashes[_doc];
+    }
+
     function isAdmin() public view returns(bool){
         if(msg.sender == contractOwner) {
             return true;
         }else{
             return false;
         }
+    }
+
+    function makeAdmin(address _address) public onlyOwner {
+        admin[_address] = true;
+        
     }
 
 }
