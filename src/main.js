@@ -86,7 +86,7 @@ document.querySelector("#documentUploadButton").addEventListener("click", async 
         $('#documentForUpload').val('')
         notificationInfo(`Adding ${documentHash.toString().slice(0,20)}... to the registry.`);
         try {
-            const result = await contract.methods
+            await contract.methods
               .add(documentHash)
               .send({ from: kit.defaultAccount })
               successInfo(`Document ${documentHash.toString().slice(0,20)}... <b>successfully added</b> to the registry.`);

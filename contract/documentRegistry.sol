@@ -5,24 +5,29 @@ pragma solidity >=0.7.0 <0.9.0;
 contract DocumentRegistry {
     address internal contractOwner;
 
-    mapping (bytes32 => uint256) documents;
+    uint236 _amount = 3;
+
+    mapping(bytes32 => uint256) documents;
 
     bytes32[] hashes;
 
-    uint noOfDocuments;
+    uint256 noOfDocuments;
 
     modifier onlyOwner() {
-        require (msg.sender == contractOwner, "Only Organization Account is Allowed to add the Blockchain");
+        require(
+            msg.sender == contractOwner,
+            "Only Organization Account is Allowed to add the Blockchain"
+        );
         _;
     }
 
-    constructor(){
+    constructor() {
         contractOwner = msg.sender;
     }
 
-    function add(string  memory _firstHash) onlyOwner() public {
+    function add(string memory _firstHash) public onlyOwner {
         // get the time from the blockchain
-        uint timeAdded = block.timestamp;
+        uint256 timeAdded = block.timestamp;
         // encode again with keccak256
         bytes32 hashBytes = keccak256(abi.encodePacked(_firstHash));
         // store the hash in the mapping
@@ -33,30 +38,40 @@ contract DocumentRegistry {
         noOfDocuments++;
     }
 
-    function verify(string memory _clientSideHash) public view returns (uint256) {
+    function verify(string memory _clientSideHash)
+        public
+        view
+        returns (uint256)
+    {
+        require(
+            IERC20Token(cUsdTokenAddress).transferFrom(
+                msg.sender,
+                address(this),
+                _amount
+            ),
+            "Verification failed."
+        );
         // encode the hash with keccak256
         bytes32 hashBytes = keccak256(abi.encodePacked(_clientSideHash));
         // check the mapping if it exists
         return documents[hashBytes];
     }
 
-    function getNoOfDocs() public view returns(uint256){
+    function getNoOfDocs() public view returns (uint256) {
         // returns no of documents
-        return noOfDocuments;  
+        return noOfDocuments;
     }
 
-    function gethashes() public view returns(bytes32[] memory) {
+    function gethashes() public view returns (bytes32[] memory) {
         // returns the hashes array
         return hashes;
     }
 
-    function isAdmin() public view returns(bool){
-        if(msg.sender == contractOwner) {
+    function isAdmin() public view returns (bool) {
+        if (msg.sender == contractOwner) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-
 }
-
