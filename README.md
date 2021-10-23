@@ -22,6 +22,14 @@ Use Cases
 
 [DappLink](https://tamara-ebi-pere-victor.github.io/Document-Registry/)
 
+# UPDATE
+The following updates have been made to this DApp after reviewing pull requests by reviewers from the Celo development course
+1. Owner of contract can add addresses that can act as admins and add more documents to the registry
+2. A payment structure has been added for non-admins, so for a document verification by a non-admin, they pay a fee of 2cUSD
+3. A blocker has been put to stop non-admin users from being able to upload documents to the registry, as this brought about an unintended bug after my first submission
+4. The Wallet details of the contract owner are stored in the admin.js file for testers that wish to interact with the dapp with maximum access. 
+
+
 # For Developers
 ## Install
 
