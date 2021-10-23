@@ -2,8 +2,23 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 
+interface IERC20Token {
+  function transfer(address, uint256) external returns (bool);
+  function approve(address, uint256) external returns (bool);
+  function transferFrom(address, address, uint256) external returns (bool);
+  function totalSupply() external view returns (uint256);
+  function balanceOf(address) external view returns (uint256);
+  function allowance(address, address) external view returns (uint256);
+
+  event Transfer(address indexed from, address indexed to, uint256 value);
+  event Approval(address indexed owner, address indexed spender, uint256 value);
+}
+
 contract DocumentRegistry {
+    //Variables
     address internal contractOwner;
+
+    address internal cUsdTokenAddress = 0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1;
 
     mapping (bytes32 => uint256) documents;
 
@@ -13,24 +28,27 @@ contract DocumentRegistry {
 
     uint noOfDocuments;
 
+    uint256 verificationAmount;
+
     modifier onlyOwner() {
         require (msg.sender == contractOwner, "Only Organization Account is Allowed to add the Blockchain");
-     
+        _;
+    }
+
+    modifier onlyAdmin() {
+        require (admin[msg.sender],"Only Authorized admins can perform this action ");
         _;
     }
 
     // check if user is an admin
 
-    modifier onlyAdmin() { 
-        isAdmin();
-        _;
-    }
-
-    constructor(){
+    constructor(uint256 _verificationAmount){
         contractOwner = msg.sender;
+        admin[msg.sender] = true;
+        verificationAmount = _verificationAmount * (10**18);
     }
 
-    function add(string  memory _firstHash) onlyOwner() public {
+    function add(string  memory _firstHash) onlyAdmin() public {
         // get the time from the blockchain
         uint timeAdded = block.timestamp;
         // encode again with keccak256
@@ -43,7 +61,16 @@ contract DocumentRegistry {
         noOfDocuments++;
     }
 
-    function verify(string memory _clientSideHash) public view returns (uint256) {
+    function payVerificationFee() public {
+        // user pays verification amount, 
+        // only admins are excluded from having to pay the verification amount
+            require(
+                IERC20Token(cUsdTokenAddress).transferFrom(msg.sender, address(this), verificationAmount),
+                "Transfer failed"
+            );
+    }
+
+    function verify(string memory _clientSideHash) public view returns(uint256){
         // encode the hash with keccak256
         bytes32 hashBytes = keccak256(abi.encodePacked(_clientSideHash));
         // check the mapping if it exists
@@ -60,13 +87,7 @@ contract DocumentRegistry {
         return hashes;
     }
 
-    function getDocument(bytes32 _documentHash) public view returns (bytes32){
-        uint _doc =  documents[_documentHash];
-
-        return hashes[_doc];
-    }
-
-    function isAdmin() public view returns(bool){
+    function isOwner() public view returns(bool){
         if(msg.sender == contractOwner) {
             return true;
         }else{
@@ -74,10 +95,22 @@ contract DocumentRegistry {
         }
     }
 
-    function makeAdmin(address _address) public onlyOwner {
-        admin[_address] = true;
-        
+    function isAdmin() public view returns(bool){
+        return admin[msg.sender];
     }
 
+    function makeAdmin(address _address) public onlyOwner {
+        // add users to the admin group
+        admin[_address] = true;   
+    }
+
+    function getVerificationAmount() public view returns (uint256) {
+        return verificationAmount;
+    }
+
+    function withdraw(uint256 _amount) public onlyOwner {
+        require(IERC20Token(cUsdTokenAddress).balanceOf(address(this)) >= _amount, "Insuffcient Balance");
+        require(IERC20Token(cUsdTokenAddress).transfer(payable(contractOwner), _amount),"Withdrawal failed");
+    }
 }
 
