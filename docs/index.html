@@ -87,6 +87,9 @@
             text-align: center;
             border-radius: 3px;
         }
+        .hide {
+            display: none;
+        }
 
     </style>
 </head>
@@ -96,6 +99,7 @@
         <a href="#" id="linkHome">Home</a>
         <a href="#" id="linkSubmitDocument">Submit Document</a>
         <a href="#" id="linkVerifyDocument">Verify Document</a>
+        <a href="#" class="hide" id="linkAddAdmin">Add New Admin</a>
     </header>
 
     <main>
@@ -113,6 +117,7 @@
                 <li><b>Contract owner</b> can submit new documents to be stored on the blockchain.</li>
                 <li><b>Users</b> can verify the existence of certain document in the registry.</li>
 				<li>Contract <b>address</b> (at Alfajores testnet): <a href="#" id="contractLink" target="_blank"></a></li>
+                <li>Number of <b>Documents</b> in registry: <b><a id="docsInRegistry">0</a></b> Documents</li>
             </ul>
         </section>
 
@@ -129,9 +134,17 @@
             <input type="file" id="documentToVerify" /><br/>
             <input type="button" id="documentVerifyButton" value="Submit" />
         </section>
+
+        <section id="addNewAdmin">
+            <h1>Add Admin</h1>
+            <p>Enter user address</p>
+            <input type="text" id="newAdmin" /><br/>
+            <input type="button" id="addAdminButton" value="Submit" />
+        </section>
     </main>
     
-    
+    <footer><a href="https://github.com/Tamara-Ebi-Pere-Victor/Document-Registry">Document Registry</a> - JavaScript & CELO DApp</footer>
+
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="main.js"></script></body>
