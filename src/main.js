@@ -6,7 +6,7 @@ import { sha3_256 } from "js-sha3";
 
 //deployed CA
 const documentRegistryContractAddress =
-  "0xdDb0BE6f1992B355De9F4FD64870Df9d30C9d182";
+  "0x1176721D784659Fe953df8616780D07B498633fE";
 
 const cUSDContractAddress = 
   "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
