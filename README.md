@@ -28,6 +28,15 @@ The following updates have been made to this DApp after reviewing pull requests 
 2. A payment structure has been added for non-admins, so for a document verification by a non-admin, they pay a fee of 2cUSD
 3. A blocker has been put to stop non-admin users from being able to upload documents to the registry, as this brought about an unintended bug after my first submission
 4. The Wallet details of the contract owner are stored in the admin.js file for testers that wish to interact with the dapp with maximum access. 
+5. The Following documents are already in the registry
+      * whitepaper-pages-1.pdf
+      * whitepaper-pages-2.pdf
+      * whitepaper-pages-3.pdf
+      * whitepaper-pages-4.pdf
+6. The Following documents are not in the registry
+      * whitepaper-pages-5.pdf
+      * whitepaper-pages-6.pdf
+      * whitepaper.pdf 
 
 
 # For Developers
